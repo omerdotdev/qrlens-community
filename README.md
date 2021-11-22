@@ -41,5 +41,9 @@ samples, guidance on mobile development, and a full API reference.
 Please write your feedback and review. I would be happy to read and respond.
 
 # Screenshots
-![image](https://user-images.githubusercontent.com/82511895/142889264-35a15c6d-b8d4-42ae-a67b-72b37415debf.png)
-![image](https://user-images.githubusercontent.com/82511895/142889294-62697360-f051-4ee0-98ad-41b4042c5fbc.png)
+|    -    |    -    
+|---    |---
+|    ![image](https://user-images.githubusercontent.com/82511895/142889264-35a15c6d-b8d4-42ae-a67b-72b37415debf.png)    |   ![image](https://user-images.githubusercontent.com/82511895/142889294-62697360-f051-4ee0-98ad-41b4042c5fbc.png)
+
+![image](https://user-images.githubusercontent.com/82511895/142920740-02ceb409-962d-4fa4-b2f9-d88a597a6da1.png)
+
