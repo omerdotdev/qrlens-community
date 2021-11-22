@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:qrlens_community/data/models/m_qrcode.dart';
+import 'package:qrlens_community/data/models/qrcode_model.dart';
 
 part 'qrbloc_event.dart';
 part 'qrbloc_state.dart';

@@ -4,9 +4,9 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qrlens_community/data/models/qrcode_model.dart';
 import 'package:qrlens_community/widgets/qr_code_card.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
-import 'package:qrlens_community/data/models/m_qrcode.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class Body extends StatefulWidget {
@@ -81,10 +81,10 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                       _controller = p0;
                       _controller.scannedDataStream.listen((event) {
                         BlocProvider.of<QRBloc>(context).add(QRLoad(QRCode(
-                            Random.secure().nextInt(100),
-                            event.code,
-                            event.format.formatName,
-                            false)));
+                          Random.secure().nextInt(100),
+                          event.code,
+                          event.format.formatName,
+                        )));
                       });
                     },
                     overlay: QrScannerOverlayShape(
