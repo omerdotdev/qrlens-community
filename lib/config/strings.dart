@@ -4,6 +4,6 @@ const Map AppStrings = {
   "TAGLINE": "Scan QR Codes Instantly",
   "EDITION": "Community Edition",
   "github_link": "https://github.com/omerdotdev/qrlens-community",
-  "support": "https://github.com/omerdotdev",
-  "review": "https://play.google.com"
+  "support": "https://github.com/omerdotdev/qrlens-community/discussions/3#discussion-3701394",
+  "review": "https://github.com/omerdotdev/qrlens-community/discussions"
 };
