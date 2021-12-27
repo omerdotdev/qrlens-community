@@ -23,7 +23,6 @@ This project is inspired by the [offline-qr-code](https://github.com/rugk/offlin
 ## [QR Code Scanner](https://github.com/juliuscanute/qr_code_scanner)
 📣 Shout out to [juliuscanute](https://github.com/juliuscanute) and [Julian Steenbakker](https://github.com/juliansteenbakker) for creating such a useful package for flutter.
 
-
 ## Getting Started
 
 A few resources to get you started if this is your first Flutter project:
@@ -38,7 +37,9 @@ samples, guidance on mobile development, and a full API reference.
 
 # Support
 
-Please write your feedback and review. I would be happy to read and respond.
+Please write your feedback and review. I would be happy to read and respond.  
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/omerdotdev)
 
 # Screenshots
 |    -    |    -    
