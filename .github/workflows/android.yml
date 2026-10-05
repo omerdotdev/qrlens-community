@@ -49,7 +49,7 @@ jobs:
       - run: flutter pub get
       # No signing key in CI: release builds fall back to the debug key.
       - run: flutter build apk --release
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: android-apk
           path: build/app/outputs/flutter-apk/app-release.apk
