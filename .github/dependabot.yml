@@ -9,6 +9,11 @@ updates:
     groups:
       pub-minor-patch:
         update-types: [minor, patch]
+    ignore:
+      # v7 moves iOS to Swift Package Manager; needs a dedicated migration
+      # (drop CocoaPods, adopt SwiftPM/UIScene). Revisit deliberately.
+      - dependency-name: mobile_scanner
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: gradle
     directory: /android
