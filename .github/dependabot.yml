@@ -1,14 +1,27 @@
 version: 2
 updates:
+  # Monthly, with minor/patch updates batched into one PR per ecosystem.
+  # Major updates still arrive as separate PRs so they can be reviewed alone.
   - package-ecosystem: pub
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      pub-minor-patch:
+        update-types: [minor, patch]
+
   - package-ecosystem: gradle
     directory: /android
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      gradle-minor-patch:
+        update-types: [minor, patch]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      actions-minor-patch:
+        update-types: [minor, patch]
