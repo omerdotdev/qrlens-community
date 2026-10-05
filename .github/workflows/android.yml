@@ -2,7 +2,7 @@ name: Android
 
 on:
   push:
-    branches: [main, toolchain-upgrade]
+    branches: [main, dev]
     paths:
       - ".github/workflows/android.yml"
       - "android/**"

@@ -2,8 +2,10 @@ version: 2
 updates:
   # Monthly, with minor/patch updates batched into one PR per ecosystem.
   # Major updates still arrive as separate PRs so they can be reviewed alone.
+  # PRs target the dev branch; dev is merged into main when ready.
   - package-ecosystem: pub
     directory: /
+    target-branch: dev
     schedule:
       interval: monthly
     groups:
@@ -17,6 +19,7 @@ updates:
 
   - package-ecosystem: gradle
     directory: /android
+    target-branch: dev
     schedule:
       interval: monthly
     groups:
@@ -25,6 +28,7 @@ updates:
 
   - package-ecosystem: github-actions
     directory: /
+    target-branch: dev
     schedule:
       interval: monthly
     groups:
