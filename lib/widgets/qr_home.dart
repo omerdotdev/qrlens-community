@@ -15,9 +15,7 @@ class _QRHomeState extends State<QRHome> {
     return Scaffold(
       body: const Body(),
       bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(12.0),
-        ),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(12.0)),
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
           color: Theme.of(context).primaryColor,
@@ -28,10 +26,7 @@ class _QRHomeState extends State<QRHome> {
               Builder(
                 builder: (context) => IconButton(
                   tooltip: 'Open navigation menu',
-                  icon: Icon(
-                    Icons.info,
-                    color: Theme.of(context).cardColor,
-                  ),
+                  icon: Icon(Icons.info, color: Theme.of(context).cardColor),
                   onPressed: () {
                     showAboutDialog(
                       context: context,

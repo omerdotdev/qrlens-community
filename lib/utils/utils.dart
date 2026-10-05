@@ -24,24 +24,25 @@ class Utils {
   }
 
   static void showSnackBarWith(
-      BuildContext context, String msg, IconData icon) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-      elevation: 3.0,
-      duration: const Duration(milliseconds: 600),
-      behavior: SnackBarBehavior.floating,
-      content: Row(
-        children: [
-          Icon(
-            icon,
-            color: Theme.of(context).cardColor,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(msg),
-          ),
-        ],
+    BuildContext context,
+    String msg,
+    IconData icon,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        elevation: 3.0,
+        duration: const Duration(milliseconds: 600),
+        behavior: SnackBarBehavior.floating,
+        content: Row(
+          children: [
+            Icon(icon, color: Theme.of(context).cardColor),
+            Padding(padding: const EdgeInsets.all(8.0), child: Text(msg)),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

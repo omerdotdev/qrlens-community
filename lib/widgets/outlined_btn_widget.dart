@@ -28,7 +28,8 @@ class OutlineButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
-      onPressed: onPressed ??
+      onPressed:
+          onPressed ??
           () async {
             if (showSnackbar) {
               final yes = await Utils.lauchURl(url);

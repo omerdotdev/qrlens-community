@@ -38,10 +38,7 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
         padding: const EdgeInsets.only(top: 32.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildQRCamW(),
-            const QRCodeCard(),
-          ],
+          children: [_buildQRCamW(), const QRCodeCard()],
         ),
       ),
     );
@@ -72,11 +69,15 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                           // onDetect fires for every camera frame; only emit
                           // when the scanned value actually changes.
                           _lastCode = code;
-                          BlocProvider.of<QRBloc>(context).add(QRLoad(QRCode(
-                            DateTime.now().microsecondsSinceEpoch,
-                            code,
-                            barcode.format.name,
-                          )));
+                          BlocProvider.of<QRBloc>(context).add(
+                            QRLoad(
+                              QRCode(
+                                DateTime.now().microsecondsSinceEpoch,
+                                code,
+                                barcode.format.name,
+                              ),
+                            ),
+                          );
                         }
                       }
                     },

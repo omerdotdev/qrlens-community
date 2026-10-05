@@ -51,10 +51,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "QR Code",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ),
                 Padding(
@@ -76,10 +73,11 @@ class _QRCodeCardState extends State<QRCodeCard> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Chip(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          label:
-                              Text(state.code.type.toLowerCase().toString())),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        label: Text(state.code.type.toLowerCase().toString()),
+                      ),
                     ),
                   ],
                 ),
@@ -89,15 +87,20 @@ class _QRCodeCardState extends State<QRCodeCard> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: OutlineButtonWidget(
-                          url: "",
-                          icon: Icons.copy_rounded,
-                          label: "Copy",
-                          onPressed: () {
-                            Clipboard.setData(ClipboardData(
-                                text: state.code.qrString.toString()));
-                            Utils.showSnackBarWith(
-                                context, "Copied", Icons.copy_rounded);
-                          }),
+                        url: "",
+                        icon: Icons.copy_rounded,
+                        label: "Copy",
+                        onPressed: () {
+                          Clipboard.setData(
+                            ClipboardData(text: state.code.qrString.toString()),
+                          );
+                          Utils.showSnackBarWith(
+                            context,
+                            "Copied",
+                            Icons.copy_rounded,
+                          );
+                        },
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -111,7 +114,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -120,7 +123,8 @@ class _QRCodeCardState extends State<QRCodeCard> {
             right: 0.0,
             child: TextButton(
               style: TextButton.styleFrom(
-                  foregroundColor: Theme.of(context).primaryColor),
+                foregroundColor: Theme.of(context).primaryColor,
+              ),
               autofocus: false,
               onPressed: () {
                 BlocProvider.of<QRBloc>(context).add(QRInit());

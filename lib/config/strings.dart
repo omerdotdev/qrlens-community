@@ -6,5 +6,5 @@ const Map AppStrings = {
   "github_link": "https://github.com/omerdotdev/qrlens-community",
   "support":
       "https://github.com/omerdotdev/qrlens-community/discussions/3#discussion-3701394",
-  "review": "https://github.com/omerdotdev/qrlens-community/discussions"
+  "review": "https://github.com/omerdotdev/qrlens-community/discussions",
 };

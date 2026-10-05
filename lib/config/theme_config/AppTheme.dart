@@ -21,7 +21,8 @@ class AppTheme {
     visualDensity: VisualDensity.adaptivePlatformDensity,
     iconTheme: const IconThemeData(color: Palette.accentColorBeige),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Palette.accentColorBeige),
+      backgroundColor: Palette.accentColorBeige,
+    ),
     // iconTheme: IconThemeData(
     //   color: Colors.white,
     // ),
