@@ -40,7 +40,7 @@ jobs:
       - run: flutter pub get
       # Project site is served from /<repo>/, so the base href must match.
       - run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: build/web
 
