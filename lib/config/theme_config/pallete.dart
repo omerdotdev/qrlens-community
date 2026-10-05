@@ -27,11 +27,10 @@ class Palette {
   // beige-shades
   // static const int primaryColor = 0xfffaf0e6;
   // static const int accentColor = 0xffd9b99b;
-
 }
 
 MaterialColor generateMaterialColor(Color color) {
-  return MaterialColor(color.value, {
+  return MaterialColor(color.toARGB32(), {
     50: tintColor(color, 0.9),
     100: tintColor(color, 0.8),
     200: tintColor(color, 0.6),
@@ -49,16 +48,18 @@ int tintValue(int value, double factor) =>
     max(0, min((value + ((255 - value) * factor)).round(), 255));
 
 Color tintColor(Color color, double factor) => Color.fromRGBO(
-    tintValue(color.red, factor),
-    tintValue(color.green, factor),
-    tintValue(color.blue, factor),
-    1);
+  tintValue(color.red, factor),
+  tintValue(color.green, factor),
+  tintValue(color.blue, factor),
+  1,
+);
 
 int shadeValue(int value, double factor) =>
     max(0, min(value - (value * factor).round(), 255));
 
 Color shadeColor(Color color, double factor) => Color.fromRGBO(
-    shadeValue(color.red, factor),
-    shadeValue(color.green, factor),
-    shadeValue(color.blue, factor),
-    1);
+  shadeValue(color.red, factor),
+  shadeValue(color.green, factor),
+  shadeValue(color.blue, factor),
+  1,
+);

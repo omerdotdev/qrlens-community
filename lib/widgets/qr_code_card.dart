@@ -7,7 +7,7 @@ import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 class QRCodeCard extends StatefulWidget {
-  const QRCodeCard({Key key}) : super(key: key);
+  const QRCodeCard({Key? key}) : super(key: key);
 
   @override
   _QRCodeCardState createState() => _QRCodeCardState();
@@ -19,7 +19,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
     return BlocBuilder<QRBloc, QRState>(
       builder: (context, state) {
         if (state is QRInitial) {
-          return QRCodePlaceholder();
+          return const QRCodePlaceholder();
         } else if (state is QRInstanceState) {
           return Center(
             child: Padding(
@@ -28,7 +28,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
             ),
           );
         } else {
-          return Text("Oops! Something went wrong!");
+          return const Text("Oops! Something went wrong!");
         }
       },
     );
@@ -47,14 +47,11 @@ class _QRCodeCardState extends State<QRCodeCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     "QR Code",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ),
                 Padding(
@@ -63,8 +60,8 @@ class _QRCodeCardState extends State<QRCodeCard> {
                 ),
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Type:",
                         style: TextStyle(
@@ -76,10 +73,11 @@ class _QRCodeCardState extends State<QRCodeCard> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Chip(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          label:
-                              Text(state.code.type.toLowerCase().toString())),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        label: Text(state.code.type.toLowerCase().toString()),
+                      ),
                     ),
                   ],
                 ),
@@ -89,15 +87,20 @@ class _QRCodeCardState extends State<QRCodeCard> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: OutlineButtonWidget(
-                          url: "",
-                          icon: Icons.copy_rounded,
-                          label: "Copy",
-                          onPressed: () {
-                            Clipboard.setData(ClipboardData(
-                                text: state.code.qrString.toString()));
-                            Utils.showSnackBarWith(
-                                context, "Copied", Icons.copy_rounded);
-                          }),
+                        url: "",
+                        icon: Icons.copy_rounded,
+                        label: "Copy",
+                        onPressed: () {
+                          Clipboard.setData(
+                            ClipboardData(text: state.code.qrString.toString()),
+                          );
+                          Utils.showSnackBarWith(
+                            context,
+                            "Copied",
+                            Icons.copy_rounded,
+                          );
+                        },
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -111,7 +114,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -119,13 +122,14 @@ class _QRCodeCardState extends State<QRCodeCard> {
             top: 0.0,
             right: 0.0,
             child: TextButton(
-              style:
-                  TextButton.styleFrom(primary: Theme.of(context).primaryColor),
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).primaryColor,
+              ),
               autofocus: false,
               onPressed: () {
                 BlocProvider.of<QRBloc>(context).add(QRInit());
               },
-              child: Icon(Icons.clear),
+              child: const Icon(Icons.clear),
             ),
           ),
         ],

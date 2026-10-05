@@ -1,0 +1,57 @@
+name: iOS
+
+# macOS runners are the slowest and (on private repos) 10x more expensive,
+# so iOS builds run on PRs into main, on main, on release tags and on demand,
+# not on every branch push.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+    paths:
+      - ".github/workflows/ios.yml"
+      - "ios/**"
+      - "lib/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "assets/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/ios.yml"
+      - "ios/**"
+      - "lib/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "assets/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios.yml-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned so builds are reproducible. Bump deliberately (see dependabot PRs).
+  FLUTTER_VERSION: "3.47.6"
+
+jobs:
+  build:
+    name: Build iOS (no codesign)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      # CocoaPods download cache (the Pods themselves are re-resolved each run).
+      - uses: actions/cache@v4
+        with:
+          path: ~/Library/Caches/CocoaPods
+          key: cocoapods-${{ runner.os }}-${{ hashFiles('pubspec.lock', 'ios/Podfile') }}
+          restore-keys: cocoapods-${{ runner.os }}-
+      - run: flutter build ios --release --no-codesign

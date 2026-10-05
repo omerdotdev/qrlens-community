@@ -1,0 +1,51 @@
+name: Web
+
+on:
+  push:
+    branches: [main, toolchain-upgrade]
+    paths:
+      - ".github/workflows/web.yml"
+      - "web/**"
+      - "lib/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "assets/**"
+  pull_request:
+    paths:
+      - ".github/workflows/web.yml"
+      - "web/**"
+      - "lib/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "assets/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: web.yml-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned so builds are reproducible. Bump deliberately (see dependabot PRs).
+  FLUTTER_VERSION: "3.47.6"
+
+jobs:
+  build:
+    name: Build web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build web --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+          retention-days: 7

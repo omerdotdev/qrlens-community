@@ -8,7 +8,7 @@ part 'qrbloc_state.dart';
 
 class QRBloc extends Bloc<QREvent, QRState> {
   QRBloc() : super(QRInitial()) {
-    on<QRLoad>((event, emit) => {emit(QRInstanceState(event.code))});
+    on<QRLoad>((event, emit) => emit(QRInstanceState(event.code)));
     on<QRInit>((event, emit) => emit(QRInitial()));
   }
 }

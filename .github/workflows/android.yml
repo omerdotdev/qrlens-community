@@ -1,0 +1,56 @@
+name: Android
+
+on:
+  push:
+    branches: [main, toolchain-upgrade]
+    paths:
+      - ".github/workflows/android.yml"
+      - "android/**"
+      - "lib/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "assets/**"
+  pull_request:
+    paths:
+      - ".github/workflows/android.yml"
+      - "android/**"
+      - "lib/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "assets/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android.yml-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned so builds are reproducible. Bump deliberately (see dependabot PRs).
+  FLUTTER_VERSION: "3.47.6"
+
+jobs:
+  build:
+    name: Build Android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      # No signing key in CI: release builds fall back to the debug key.
+      - run: flutter build apk --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7

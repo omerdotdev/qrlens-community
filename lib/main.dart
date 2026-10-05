@@ -12,12 +12,14 @@ void main() {
   runApp(
     ChangeNotifierProvider<ThemeModel>(
       create: (BuildContext context) => ThemeModel(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system,
-        home: QRHome(title: 'QR Lens'),
+        home: const QRHome(title: 'QR Lens'),
       ),
     );
   }

@@ -18,12 +18,13 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.2+3
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: ">=3.44.0"
 
 dependencies:
-  qr_code_scanner: ^0.6.1
+  mobile_scanner: ^6.0.0
   url_launcher: ^6.0.3
-  flutter_native_splash: ^1.1.5+1
+  flutter_native_splash: ^2.4.0
   just_audio: ^0.9.18
   provider: ^6.0.0
   flutter:
@@ -37,11 +38,12 @@ dependencies:
   bloc: ^8.0.1
   flutter_bloc: ^8.0.0
   equatable: ^2.0.3
-  font_awesome_flutter: ^9.2.0
 
+  meta: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

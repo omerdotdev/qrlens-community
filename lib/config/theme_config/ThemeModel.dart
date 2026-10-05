@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ThemeModel extends ChangeNotifier {
@@ -19,11 +18,6 @@ class ThemeModel extends ChangeNotifier {
       case ThemeMode.system:
         {
           mode = ThemeMode.light;
-        }
-        break;
-      default:
-        {
-          mode = ThemeMode.system;
         }
         break;
     }

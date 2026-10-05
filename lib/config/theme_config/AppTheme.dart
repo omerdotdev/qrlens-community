@@ -9,8 +9,8 @@ class AppTheme {
     primarySwatch: generateMaterialColor(Palette.primary),
     brightness: Brightness.light,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    iconTheme: IconThemeData(color: Palette.primary),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    iconTheme: const IconThemeData(color: Palette.primary),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Palette.primary,
     ),
   );
@@ -19,9 +19,10 @@ class AppTheme {
     brightness: Brightness.dark,
     primarySwatch: generateMaterialColor(Palette.accentColorBeige),
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    iconTheme: IconThemeData(color: Palette.accentColorBeige),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Palette.accentColorBeige),
+    iconTheme: const IconThemeData(color: Palette.accentColorBeige),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Palette.accentColorBeige,
+    ),
     // iconTheme: IconThemeData(
     //   color: Colors.white,
     // ),
