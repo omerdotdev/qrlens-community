@@ -4,8 +4,8 @@ import 'package:qrlens_community/widgets/body.dart';
 import 'package:qrlens_community/config/strings.dart';
 
 class QRHome extends StatefulWidget {
-  QRHome({Key key, this.title}) : super(key: key);
-  final String title;
+  const QRHome({Key? key, this.title}) : super(key: key);
+  final String? title;
   @override
   _QRHomeState createState() => _QRHomeState();
 }

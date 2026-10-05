@@ -3,9 +3,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   static Future<bool> lauchURl(String code) async {
-    if (await canLaunch(code)) {
-      await launch(code);
-      return true;
+    final uri = Uri.tryParse(code);
+    if (uri != null && await canLaunchUrl(uri)) {
+      return await launchUrl(uri);
     } else {
       return false;
     }
@@ -16,7 +16,7 @@ class Utils {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       elevation: 3.0,
-      duration: Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 600),
       behavior: SnackBarBehavior.floating,
       content: Row(
         children: [

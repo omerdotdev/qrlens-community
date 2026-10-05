@@ -10,7 +10,7 @@ class QRCode {
         qrString = json['qrString'],
         type = json['type'];
 
-  QRCode copyWith(String id, String qrstring, String type) {
+  QRCode copyWith({int? id, String? qrstring, String? type}) {
     return QRCode(id ?? this.id, qrstring ?? this.qrString, type ?? this.type);
   }
 }

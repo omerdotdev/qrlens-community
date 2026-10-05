@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:qrlens_community/widgets/outlined_btn_widget.dart';
 import 'package:qrlens_community/config/strings.dart';
 
 class QRCodePlaceholder extends StatelessWidget {
   const QRCodePlaceholder({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -78,7 +78,7 @@ class QRCodePlaceholder extends StatelessWidget {
                   OutlineButtonWidget(
                     onPressed: null,
                     label: "Github",
-                    icon: FontAwesomeIcons.github,
+                    icon: Icons.code,
                     url: AppStrings['github_link'],
                     snackBarErrMsg: "Error!",
                     snackBarErrorIcon: Icons.error_outline_rounded,

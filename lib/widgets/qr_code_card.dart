@@ -7,7 +7,7 @@ import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 class QRCodeCard extends StatefulWidget {
-  const QRCodeCard({Key key}) : super(key: key);
+  const QRCodeCard({Key? key}) : super(key: key);
 
   @override
   _QRCodeCardState createState() => _QRCodeCardState();
@@ -119,8 +119,8 @@ class _QRCodeCardState extends State<QRCodeCard> {
             top: 0.0,
             right: 0.0,
             child: TextButton(
-              style:
-                  TextButton.styleFrom(primary: Theme.of(context).primaryColor),
+              style: TextButton.styleFrom(
+                  foregroundColor: Theme.of(context).primaryColor),
               autofocus: false,
               onPressed: () {
                 BlocProvider.of<QRBloc>(context).add(QRInit());
