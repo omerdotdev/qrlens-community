@@ -22,7 +22,7 @@ environment:
   flutter: ">=3.44.0"
 
 dependencies:
-  mobile_scanner: ^6.0.0
+  mobile_scanner: ^7.4.2
   url_launcher: ^6.0.3
   flutter_native_splash: ^2.4.0
   just_audio: ^0.9.18
