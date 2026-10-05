@@ -37,7 +37,7 @@ dependencies:
   hive: ^2.0.4
   bloc: ^8.0.1
   flutter_bloc: ^8.0.0
-  equatable: ^2.0.3
+  equatable: ^3.0.0
 
   meta: any
 dev_dependencies:
