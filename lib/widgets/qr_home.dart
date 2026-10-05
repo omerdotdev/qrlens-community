@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qrlens_community/widgets/body.dart';
 import 'package:qrlens_community/config/strings.dart';
@@ -14,13 +13,13 @@ class _QRHomeState extends State<QRHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(),
+      body: const Body(),
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(12.0),
         ),
         child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           color: Theme.of(context).primaryColor,
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -36,7 +35,7 @@ class _QRHomeState extends State<QRHome> {
                   onPressed: () {
                     showAboutDialog(
                       context: context,
-                      applicationIcon: Image(
+                      applicationIcon: const Image(
                         image: AssetImage('assets/ic_launcher_round.png'),
                         fit: BoxFit.scaleDown,
                         height: 64,

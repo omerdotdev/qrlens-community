@@ -32,7 +32,7 @@ class OutlineButtonWidget extends StatelessWidget {
           () async {
             if (showSnackbar) {
               final yes = await Utils.lauchURl(url);
-              if (!yes) {
+              if (!yes && context.mounted) {
                 Utils.showSnackBarWith(
                   context,
                   snackBarErrMsg ?? 'Error opening link',

@@ -23,15 +23,15 @@ class QRCodePlaceholder extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(128)),
+                borderRadius: const BorderRadius.all(Radius.circular(128)),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       // color: generateMaterialColor(Palette.primary)[300],
                       // border: Border.all(color: Colors.white, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(128))),
                   width: 64,
                   height: 64,
-                  child: Image(
+                  child: const Image(
                     image: AssetImage(
                       "assets/ic_launcher_round.png",
                     ),
@@ -43,7 +43,7 @@ class QRCodePlaceholder extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "${AppStrings["AppName"]}",
-                style: TextStyle(
+                style: const TextStyle(
                   // color: Colors.white,
                   fontSize: 24,
                 ),
@@ -53,7 +53,7 @@ class QRCodePlaceholder extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 AppStrings["TAGLINE"],
-                style: TextStyle(
+                style: const TextStyle(
                   // color: Colors.white,
                   fontSize: 12,
                 ),

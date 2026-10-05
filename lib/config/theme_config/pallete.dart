@@ -27,11 +27,10 @@ class Palette {
   // beige-shades
   // static const int primaryColor = 0xfffaf0e6;
   // static const int accentColor = 0xffd9b99b;
-
 }
 
 MaterialColor generateMaterialColor(Color color) {
-  return MaterialColor(color.value, {
+  return MaterialColor(color.toARGB32(), {
     50: tintColor(color, 0.9),
     100: tintColor(color, 0.8),
     200: tintColor(color, 0.6),

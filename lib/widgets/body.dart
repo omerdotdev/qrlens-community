@@ -1,7 +1,3 @@
-import 'dart:io';
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -19,6 +15,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> with WidgetsBindingObserver {
   late final MobileScannerController _controller;
   bool _flashOn = false;
+  String? _lastCode;
 
   @override
   void initState() {
@@ -51,49 +48,57 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
   }
 
   Widget _buildQRCamW() {
-    return Center(
-      child: SizedBox(
-        width: double.infinity,
-        height: (MediaQuery.of(context).size.height * 0.50).roundToDouble(),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(24.0),
-                child: MobileScanner(
-                  controller: _controller,
-                  onDetect: (BarcodeCapture capture) {
-                    final barcodes = capture.barcodes;
-                    for (final barcode in barcodes) {
-                      final code = barcode.rawValue;
-                      if (code != null) {
-                        BlocProvider.of<QRBloc>(context).add(QRLoad(QRCode(
-                          Random.secure().nextInt(100),
-                          code,
-                          barcode.format.name,
-                        )));
+    return BlocListener<QRBloc, QRState>(
+      // Allow re-scanning the same code after the result card is dismissed.
+      listenWhen: (previous, current) => current is QRInitial,
+      listener: (context, state) => _lastCode = null,
+      child: Center(
+        child: SizedBox(
+          width: double.infinity,
+          height: (MediaQuery.of(context).size.height * 0.50).roundToDouble(),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(24.0),
+                  child: MobileScanner(
+                    controller: _controller,
+                    onDetect: (BarcodeCapture capture) {
+                      final barcodes = capture.barcodes;
+                      for (final barcode in barcodes) {
+                        final code = barcode.rawValue;
+                        if (code != null && code != _lastCode) {
+                          // onDetect fires for every camera frame; only emit
+                          // when the scanned value actually changes.
+                          _lastCode = code;
+                          BlocProvider.of<QRBloc>(context).add(QRLoad(QRCode(
+                            DateTime.now().microsecondsSinceEpoch,
+                            code,
+                            barcode.format.name,
+                          )));
+                        }
                       }
-                    }
-                  },
+                    },
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 0.0,
-              left: 0.0,
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: IconButton(
-                  onPressed: _toggleFlash,
-                  color: Colors.white,
-                  iconSize: 36,
-                  icon: Icon(_flashOn ? Icons.flash_off : Icons.flash_on),
-                  alignment: Alignment.center,
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: IconButton(
+                    onPressed: _toggleFlash,
+                    color: Colors.white,
+                    iconSize: 36,
+                    icon: Icon(_flashOn ? Icons.flash_off : Icons.flash_on),
+                    alignment: Alignment.center,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

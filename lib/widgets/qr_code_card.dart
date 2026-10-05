@@ -19,7 +19,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
     return BlocBuilder<QRBloc, QRState>(
       builder: (context, state) {
         if (state is QRInitial) {
-          return QRCodePlaceholder();
+          return const QRCodePlaceholder();
         } else if (state is QRInstanceState) {
           return Center(
             child: Padding(
@@ -28,7 +28,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
             ),
           );
         } else {
-          return Text("Oops! Something went wrong!");
+          return const Text("Oops! Something went wrong!");
         }
       },
     );
@@ -47,8 +47,8 @@ class _QRCodeCardState extends State<QRCodeCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     "QR Code",
                     style: TextStyle(
@@ -63,8 +63,8 @@ class _QRCodeCardState extends State<QRCodeCard> {
                 ),
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Type:",
                         style: TextStyle(
@@ -125,7 +125,7 @@ class _QRCodeCardState extends State<QRCodeCard> {
               onPressed: () {
                 BlocProvider.of<QRBloc>(context).add(QRInit());
               },
-              child: Icon(Icons.clear),
+              child: const Icon(Icons.clear),
             ),
           ),
         ],

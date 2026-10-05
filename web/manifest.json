@@ -1,11 +1,11 @@
 {
-    "name": "qrlens_community",
-    "short_name": "qrlens_community",
+    "name": "QR Lens",
+    "short_name": "QR Lens",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "QR Lens - scan QR codes instantly.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
