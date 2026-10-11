@@ -1,7 +1,23 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  test('Utils.scanFeedback triggers a haptic impact', () async {
+    final calls = <String?>[];
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(SystemChannels.platform, (call) async {
+          if (call.method == 'HapticFeedback.vibrate') {
+            calls.add(call.arguments as String?);
+          }
+          return null;
+        });
+    await Utils.scanFeedback();
+    expect(calls, ['HapticFeedbackType.mediumImpact']);
+  });
+
   group('Utils.safeWebUri', () {
     test('accepts http and https links', () {
       expect(Utils.safeWebUri('https://example.com/a?b=1'), isNotNull);

@@ -4,6 +4,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qrlens_community/data/models/qrcode_model.dart';
 import 'package:qrlens_community/widgets/qr_code_card.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
+import 'package:qrlens_community/utils/utils.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -69,6 +70,7 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                           // onDetect fires for every camera frame; only emit
                           // when the scanned value actually changes.
                           _lastCode = code;
+                          Utils.scanFeedback();
                           BlocProvider.of<QRBloc>(context).add(
                             QRLoad(
                               QRCode(
