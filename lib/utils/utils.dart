@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -11,6 +12,14 @@ class Utils {
     if (uri == null || !uri.hasAuthority || uri.host.isEmpty) return null;
     if (uri.scheme != 'http' && uri.scheme != 'https') return null;
     return uri;
+  }
+
+  /// Short haptic tick confirming a successful scan. Never throws: not every
+  /// platform (e.g. web, some desktops) supports haptics.
+  static Future<void> scanFeedback() async {
+    try {
+      await HapticFeedback.mediumImpact();
+    } catch (_) {}
   }
 
   static Future<bool> lauchURl(String code) async {
