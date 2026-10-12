@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qrlens_community/widgets/body.dart';
 import 'package:qrlens_community/config/strings.dart';
+import 'package:qrlens_community/widgets/history_page.dart';
 
 class QRHome extends StatefulWidget {
   const QRHome({Key? key, this.title}) : super(key: key);
@@ -23,6 +24,13 @@ class _QRHomeState extends State<QRHome> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              IconButton(
+                tooltip: 'Scan history',
+                icon: Icon(Icons.history, color: Theme.of(context).cardColor),
+                onPressed: () => Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => const HistoryPage())),
+              ),
               Builder(
                 builder: (context) => IconButton(
                   tooltip: 'Open navigation menu',

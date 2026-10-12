@@ -4,6 +4,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qrlens_community/data/models/qrcode_model.dart';
 import 'package:qrlens_community/widgets/qr_code_card.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
+import 'package:qrlens_community/data/history_store.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 class Body extends StatefulWidget {
@@ -71,15 +72,13 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                           // when the scanned value actually changes.
                           _lastCode = code;
                           Utils.scanFeedback();
-                          BlocProvider.of<QRBloc>(context).add(
-                            QRLoad(
-                              QRCode(
-                                DateTime.now().microsecondsSinceEpoch,
-                                code,
-                                barcode.format.name,
-                              ),
-                            ),
+                          final scanned = QRCode(
+                            DateTime.now().microsecondsSinceEpoch,
+                            code,
+                            barcode.format.name,
                           );
+                          HistoryStore.add(scanned);
+                          BlocProvider.of<QRBloc>(context).add(QRLoad(scanned));
                         }
                       }
                     },
