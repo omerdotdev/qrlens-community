@@ -10,6 +10,12 @@ class QRCode {
       qrString = json['qrString'],
       type = json['type'];
 
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'qrString': qrString,
+    'type': type,
+  };
+
   QRCode copyWith({int? id, String? qrstring, String? type}) {
     return QRCode(id ?? this.id, qrstring ?? qrString, type ?? this.type);
   }

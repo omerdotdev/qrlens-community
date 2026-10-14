@@ -14,6 +14,8 @@ The web version is deployed here: **[omerdotdev.github.io/qrlens-community](http
 
 It is built from `main` and deployed automatically to GitHub Pages. Camera access needs HTTPS, which GitHub Pages provides.
 
+📣 Web support was contributed by [azizur-rahaman](https://github.com/azizur-rahaman) in [#13](https://github.com/omerdotdev/qrlens-community/pull/13) (web platform, the migration to `mobile_scanner` and null safety). Thank you!
+
 ## Build status
 
 | Workflow | What it checks |

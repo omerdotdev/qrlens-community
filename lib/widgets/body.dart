@@ -1,9 +1,13 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qrlens_community/data/models/qrcode_model.dart';
 import 'package:qrlens_community/widgets/qr_code_card.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
+import 'package:qrlens_community/data/history_store.dart';
+import 'package:qrlens_community/utils/utils.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -61,26 +65,7 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                   borderRadius: BorderRadius.circular(24.0),
                   child: MobileScanner(
                     controller: _controller,
-                    onDetect: (BarcodeCapture capture) {
-                      final barcodes = capture.barcodes;
-                      for (final barcode in barcodes) {
-                        final code = barcode.rawValue;
-                        if (code != null && code != _lastCode) {
-                          // onDetect fires for every camera frame; only emit
-                          // when the scanned value actually changes.
-                          _lastCode = code;
-                          BlocProvider.of<QRBloc>(context).add(
-                            QRLoad(
-                              QRCode(
-                                DateTime.now().microsecondsSinceEpoch,
-                                code,
-                                barcode.format.name,
-                              ),
-                            ),
-                          );
-                        }
-                      }
-                    },
+                    onDetect: _handleCapture,
                   ),
                 ),
               ),
@@ -98,11 +83,60 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                   ),
                 ),
               ),
+              if (!kIsWeb)
+                Positioned(
+                  bottom: 0.0,
+                  right: 0.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: IconButton(
+                      tooltip: 'Scan from image',
+                      onPressed: _scanFromImage,
+                      color: Colors.white,
+                      iconSize: 36,
+                      icon: const Icon(Icons.image),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _handleCapture(BarcodeCapture capture) {
+    for (final barcode in capture.barcodes) {
+      final code = barcode.rawValue;
+      if (code != null && code != _lastCode) {
+        // onDetect fires for every camera frame; only emit
+        // when the scanned value actually changes.
+        _lastCode = code;
+        Utils.scanFeedback();
+        final scanned = QRCode(
+          DateTime.now().microsecondsSinceEpoch,
+          code,
+          barcode.format.name,
+        );
+        HistoryStore.add(scanned);
+        BlocProvider.of<QRBloc>(context).add(QRLoad(scanned));
+      }
+    }
+  }
+
+  Future<void> _scanFromImage() async {
+    final messenger = ScaffoldMessenger.of(context);
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+    final capture = await _controller.analyzeImage(image.path);
+    if (!mounted) return;
+    if (capture == null || capture.barcodes.isEmpty) {
+      messenger.showSnackBar(
+        const SnackBar(content: Text('No QR code found in the image')),
+      );
+      return;
+    }
+    _handleCapture(capture);
   }
 
   Future<void> _toggleFlash() async {
