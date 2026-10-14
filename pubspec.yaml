@@ -41,6 +41,7 @@ dependencies:
 
   meta: any
   shared_preferences: ^2.5.6
+  image_picker: ^1.2.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
