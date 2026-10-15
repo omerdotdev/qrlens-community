@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qrlens_community/data/models/qrcode_model.dart';
 import 'package:qrlens_community/widgets/qr_code_card.dart';
+import 'package:qrlens_community/widgets/scan_frame.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
 import 'package:qrlens_community/data/history_store.dart';
 import 'package:qrlens_community/utils/utils.dart';
@@ -69,6 +70,7 @@ class _BodyState extends State<Body> with WidgetsBindingObserver {
                   ),
                 ),
               ),
+              const ScanFrame(),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,
