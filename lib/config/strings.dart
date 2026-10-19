@@ -1,4 +1,4 @@
-const Map AppStrings = {
+const Map appStrings = {
   "AppName": "QR Lens",
   "NA": "N/A",
   "TAGLINE": "Scan QR Codes Instantly",

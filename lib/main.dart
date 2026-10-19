@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
-import 'package:qrlens_community/config/theme_config/AppTheme.dart';
-import 'package:qrlens_community/config/theme_config/ThemeModel.dart';
+import 'package:qrlens_community/config/theme_config/app_theme.dart';
+import 'package:qrlens_community/config/theme_config/theme_model.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/qr_home.dart';
