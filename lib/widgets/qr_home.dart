@@ -44,8 +44,8 @@ class _QRHomeState extends State<QRHome> {
                         height: 64,
                         width: 64,
                       ),
-                      applicationName: AppStrings["AppName"],
-                      applicationVersion: AppStrings["EDITION"],
+                      applicationName: appStrings["AppName"],
+                      applicationVersion: appStrings["EDITION"],
                       applicationLegalese: 'Omer Asif',
                     );
                   },

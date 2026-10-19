@@ -41,7 +41,7 @@ class QRCodePlaceholder extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "${AppStrings["AppName"]}",
+                  "${appStrings["AppName"]}",
                   style: const TextStyle(
                     // color: Colors.white,
                     fontSize: 24,
@@ -51,7 +51,7 @@ class QRCodePlaceholder extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  AppStrings["TAGLINE"],
+                  appStrings["TAGLINE"],
                   style: const TextStyle(
                     // color: Colors.white,
                     fontSize: 12,
@@ -61,7 +61,7 @@ class QRCodePlaceholder extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  AppStrings["EDITION"],
+                  appStrings["EDITION"],
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).primaryColor,
@@ -78,7 +78,7 @@ class QRCodePlaceholder extends StatelessWidget {
                       onPressed: null,
                       label: "Github",
                       icon: Icons.code,
-                      url: AppStrings['github_link'],
+                      url: appStrings['github_link'],
                       snackBarErrMsg: "Error!",
                       snackBarErrorIcon: Icons.error_outline_rounded,
                     ),
@@ -86,7 +86,7 @@ class QRCodePlaceholder extends StatelessWidget {
                       onPressed: null,
                       label: "Review",
                       icon: Icons.rate_review,
-                      url: AppStrings['review'],
+                      url: appStrings['review'],
                       snackBarErrMsg: "Error!",
                       snackBarErrorIcon: Icons.error_outline_rounded,
                     ),
@@ -94,7 +94,7 @@ class QRCodePlaceholder extends StatelessWidget {
                       onPressed: null,
                       label: "Support",
                       icon: Icons.support_rounded,
-                      url: AppStrings['support'],
+                      url: appStrings['support'],
                       snackBarErrMsg: "Error!",
                       snackBarErrorIcon: Icons.error_outline_rounded,
                     ),
