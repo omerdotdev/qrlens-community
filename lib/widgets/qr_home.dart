@@ -4,10 +4,10 @@ import 'package:qrlens_community/config/strings.dart';
 import 'package:qrlens_community/widgets/history_page.dart';
 
 class QRHome extends StatefulWidget {
-  const QRHome({Key? key, this.title}) : super(key: key);
+  const QRHome({super.key, this.title});
   final String? title;
   @override
-  _QRHomeState createState() => _QRHomeState();
+  State<QRHome> createState() => _QRHomeState();
 }
 
 class _QRHomeState extends State<QRHome> {

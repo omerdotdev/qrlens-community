@@ -4,7 +4,7 @@ import 'package:qrlens_community/widgets/outlined_btn_widget.dart';
 import 'package:qrlens_community/config/strings.dart';
 
 class QRCodePlaceholder extends StatelessWidget {
-  const QRCodePlaceholder({Key? key}) : super(key: key);
+  const QRCodePlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {

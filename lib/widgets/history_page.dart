@@ -5,7 +5,7 @@ import 'package:qrlens_community/data/models/qrcode_model.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+  const HistoryPage({super.key});
 
   @override
   State<HistoryPage> createState() => _HistoryPageState();
