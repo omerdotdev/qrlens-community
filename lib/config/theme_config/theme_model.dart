@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ThemeModel extends ChangeNotifier {
   ThemeMode mode = ThemeMode.light;
 
-  toggleTheme() {
+  void toggleTheme() {
     switch (mode) {
       case ThemeMode.light:
         {

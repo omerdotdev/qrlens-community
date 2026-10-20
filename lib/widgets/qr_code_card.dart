@@ -7,10 +7,10 @@ import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 class QRCodeCard extends StatefulWidget {
-  const QRCodeCard({Key? key}) : super(key: key);
+  const QRCodeCard({super.key});
 
   @override
-  _QRCodeCardState createState() => _QRCodeCardState();
+  State<QRCodeCard> createState() => _QRCodeCardState();
 }
 
 class _QRCodeCardState extends State<QRCodeCard> {

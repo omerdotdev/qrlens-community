@@ -13,7 +13,7 @@ class OutlineButtonWidget extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const OutlineButtonWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.icon,
     required this.url,
@@ -23,7 +23,7 @@ class OutlineButtonWidget extends StatelessWidget {
     this.snackBarMessageIcon,
     this.snackBarErrorIcon,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
