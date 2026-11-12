@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qrlens_community/widgets/outlined_btn_widget.dart';
 import 'package:qrlens_community/widgets/qr_code_card_placeholder.dart';
 import 'package:qrlens_community/bloc/qrbloc_bloc.dart';
+import 'package:qrlens_community/utils/link_check.dart';
 import 'package:qrlens_community/utils/utils.dart';
 
 class QRCodeCard extends StatefulWidget {
@@ -34,7 +35,55 @@ class _QRCodeCardState extends State<QRCodeCard> {
     );
   }
 
+  Future<void> _confirmAndOpen(
+    BuildContext context,
+    String code,
+    List<String> warnings,
+  ) async {
+    final open = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        icon: const Icon(Icons.warning_amber_rounded),
+        title: const Text("Open this link?"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(code),
+            const SizedBox(height: 12),
+            for (final w in warnings)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Text("• $w"),
+              ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text("Open anyway"),
+          ),
+        ],
+      ),
+    );
+    if (open != true) return;
+    final ok = await Utils.lauchURl(code);
+    if (!ok && context.mounted) {
+      Utils.showSnackBarWith(
+        context,
+        "LOL: Link Not Found!",
+        Icons.error_outline_rounded,
+      );
+    }
+  }
+
   Widget _buildQRCodeCard(QRInstanceState state, BuildContext context) {
+    final uri = Utils.safeWebUri(state.code.qrString);
+    final warnings = uri == null ? const <String>[] : LinkCheck.warnings(uri);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       elevation: 4.0,
@@ -81,6 +130,17 @@ class _QRCodeCardState extends State<QRCodeCard> {
                     ),
                   ],
                 ),
+                if (warnings.isNotEmpty)
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.warning_amber_rounded, size: 18),
+                        SizedBox(width: 6),
+                        Flexible(child: Text("Check this link before opening")),
+                      ],
+                    ),
+                  ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -106,7 +166,13 @@ class _QRCodeCardState extends State<QRCodeCard> {
                       padding: const EdgeInsets.all(8.0),
                       child: OutlineButtonWidget(
                         url: state.code.qrString,
-                        onPressed: null,
+                        onPressed: warnings.isEmpty
+                            ? null
+                            : () => _confirmAndOpen(
+                                context,
+                                state.code.qrString,
+                                warnings,
+                              ),
                         label: "Open",
                         icon: Icons.open_in_browser_rounded,
                         snackBarErrMsg: "LOL: Link Not Found!",
